@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Papers by {{ ontology }}</h1>
+    <ul>
+        {% for paper in papers %}
+            <li>
+                <a href="{% url 'paper_detail' paper.id %}">{{ paper.title }}</a>
+                <ul>
+                    <li>Ontologies: {% for ontology in paper.ontologies %}{{ ontology.acronym }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+                    <li>Authors: {% for author in paper.authors %}{{ author.full_name }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+                    <li>Published: {{ paper.published_date }}</li>
+                </ul>
+            </li>
+        {% empty %}
+            <li>No papers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

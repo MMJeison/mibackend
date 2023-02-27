@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if paper %}
+        <h1>{{ paper.title }}</h1>
+        <p><strong>Authors:</strong> {% for author in paper.authors %}{{ author.full_name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+        <p><strong>Publication date:</strong> {{ paper.published_date }}</p>
+        <p><strong>Abstract:</strong> {{ paper.abstract }}</p>
+        <ul>
+            {% for ontology in paper.ontologies %}
+                <li>{{ ontology.acronym }}: {{ ontology.class }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No paper found with the ID {{ id }}.</p>
+    {% endif %}
+{% endblock %}

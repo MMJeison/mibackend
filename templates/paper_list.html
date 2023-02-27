@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>List of Papers</h1>
+    <ul>
+        {% for paper in papers %}
+            <li> {{ paper.id }} </li>
+        {% empty %}
+            <li>No papers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

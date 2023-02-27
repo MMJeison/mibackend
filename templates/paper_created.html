@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+    <h1>Paper Created</h1>
+    <p>The paper has been successfully created.</p>
+    <p>{{ paper }}</p>
+    <p>{{ authors }}</p>
+    <ul>
+        {% for author in authors %}
+            <li>{{ author }}</li>
+        {% empty %}
+            <li>No authors found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
