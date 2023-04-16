@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Copia los archivos requeridos de tu proyecto a la imagen de Docker
 COPY requirements.txt /app/
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
@@ -13,4 +14,4 @@ COPY . /app/
 EXPOSE 8000
 
 # Ejecuta el comando que inicia la aplicación
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
