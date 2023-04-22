@@ -77,3 +77,18 @@ def paper_list(request):
 
     """ return render(request, 'paper_list.html', {'papers': papers}) """
     return JsonResponse(papers, safe=False)
+
+# MATCH (article:bibo__Document)<-[:aoc__annotatesResource]-(concept:aot__ExactQualifier)-[:aoc__hasTopic]->(ontology:n4sch__Class) WHERE article.bibo__pmid[0] = '33331612' WITH  article,ontology,concept
+# RETURN DISTINCT article.bibo__pmid[0] AS PMC_ID,ontology.dct__source[0] AS Ontología,collect(concept.aoc__body[0]) AS Concepto limit 100
+
+def viewsPMCID (request):
+    pmcid = request.GET.get('pmcid')
+    if not pmcid or pmcid == '':
+        return JsonResponse({'error': 'No se ha especificado el identificador del artículo'}, safe=False)
+    query = "MATCH (article:bibo__Document)<-[:aoc__annotatesResource]-(concept:aot__ExactQualifier)-[:aoc__hasTopic]->(ontology:n4sch__Class) WHERE article.bibo__pmid[0] = '"+ pmcid +"' WITH  article,ontology,concept RETURN DISTINCT article.bibo__pmid[0] AS PMC_ID,ontology.dct__source[0] AS Ontología,collect(concept.aoc__body[0]) AS Concepto limit 100"
+    results, meta = db.cypher_query(query)
+    concepts = [{'id': rec[0],
+                'ontology': rec[1],
+                'concepts': rec[2],
+              } for rec in results]
+    return JsonResponse(concepts, safe=False)
