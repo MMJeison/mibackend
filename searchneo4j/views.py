@@ -53,7 +53,7 @@ def paper_list(request):
         ontology = ontologies[n]
     limit = request.GET.get('limit')
     if not limit or limit == '':
-        limit = rd.randint(25, 30)
+        limit = rd.randint(150, 170)
     # Consulta Neo4j para recuperar todos los nodos de tipo Paper
     query = "MATCH (article:bibo__Document)<-[:aoc__annotatesResource]-(concept:aot__ExactQualifier)-[:aoc__hasTopic]->(ontology:n4sch__Class) \
             MATCH (author:foaf__Person)<-[]-(:rdf__Seq)<-[:bibo__authorList]-(article)-[:dct__publisher]->(organization:foaf__Organization) \
