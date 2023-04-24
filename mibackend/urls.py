@@ -23,4 +23,9 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('papers/', views.paper_list, name='paper_list'),
     path('papers/view/', views.viewsPMCID, name='paperConcepts'),
+    path('papers/ontology/', views.viewsPMCIDOntology, name='paperOntology'),
+    path('papers/PMCIOntoConcept/', views.viewsPMCIDOntologyConcept, name='paperPMCIOntoConcept'),
+    path('papers/concept/', views.viewsConcept, name='paperConcept'),
+    path('papers/concept/PMCID', views.viewsPMCIDConcept, name='paperConceptPMCID'),
+    path('papers/concept/count', views.viewsConceptCount, name='paperConceptCount'),
 ]
