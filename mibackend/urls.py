@@ -28,4 +28,5 @@ urlpatterns = [
     path('papers/concept/', views.viewsConcept, name='paperConcept'),
     path('papers/concept/PMCID', views.viewsPMCIDConcept, name='paperConceptPMCID'),
     path('papers/concept/count', views.viewsConceptCount, name='paperConceptCount'),
+    path('papers/search/', views.searchByConceptAndOntology, name='search'),
 ]
